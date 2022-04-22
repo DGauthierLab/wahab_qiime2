@@ -2,12 +2,11 @@
 
 #Folder setup for QIIME2 processing on Wahab HPC cluster
 
-#SBATCH --job-name=folder setup
-#SBATCH -o logs/qiime2-%j.out
+#SBATCH --job-name=folder_setup
+#SBATCH -o qiime2-%j.out
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
-mkdir -p logs
 mkdir -p metadata
 mkdir -p fastq
 
