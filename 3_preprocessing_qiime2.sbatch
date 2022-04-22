@@ -4,7 +4,7 @@
 #requires demux paired end files in folder called demux under top analysis directory
 
 #SBATCH --job-name=qiime2_dada2_preprocessing
-#SBATCH -o qiime2-%j.out
+#SBATCH -o logs/qiime2-%j.out
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
@@ -13,12 +13,12 @@ module load container_env qiime2
 
 ##SET metadata path
 
-METAPATH=/cm/shared/courses/gauthier/Microbiome/metadata/metadata_19_21b.txt
+METAPATH=metadata/metadata_19_21b.txt
 
 ##SET truncation of F and R reads
 
-FTRUNC=250
-RTRUNC=250
+FTRUNC=275
+RTRUNC=275
 
 ##SET left trims of F and R reads
 
@@ -32,9 +32,6 @@ CHIMERA=2
 mkdir -p dada2_${FTRIM}_${RTRIM}_${FTRUNC}_${RTRUNC}_p${CHIMERA}
 cd dada2_${FTRIM}_${RTRIM}_${FTRUNC}_${RTRUNC}_p${CHIMERA}
 
-##SET metadata path
-
-#METAPATH=/cm/shared/courses/gauthier/Microbiome/metadata/metadata_19_21b.txt
 
 ##follows from 1_file_import_qiime2 script
 #examine demux-paired-end.qzv file to estimate settings
@@ -66,24 +63,24 @@ crun qiime phylogeny align-to-tree-mafft-fasttree \
 
 ##Taxonomic analysis (generate taxonomy.qza file)
 
-#crun qiime feature-classifier classify-sklearn \
-#  --i-classifier /cm/shared/courses/gauthier/Microbiome/training_feature_classifiers/slv_ssu_138.1_classifier.qza \
-#  --i-reads rep-seqs.qza \
-#  --o-classification taxonomy.qza
+crun qiime feature-classifier classify-sklearn \
+  --i-classifier /cm/shared/courses/gauthier/Microbiome/training_feature_classifiers/slv_ssu_138.1_classifier.qza \
+  --i-reads rep-seqs.qza \
+  --o-classification taxonomy.qza
 
-#crun qiime metadata tabulate \
-#  --m-input-file taxonomy.qza \
-#  --o-visualization taxonomy.qzv
+crun qiime metadata tabulate \
+  --m-input-file taxonomy.qza \
+  --o-visualization taxonomy.qzv
 
 ##Run alpha-rarefaction analysis on whole data
 ##Alpha Rarefaction
 
-#crun qiime diversity alpha-rarefaction \
-#  --i-table table.qza \
-#  --i-phylogeny rooted-tree.qza \
-#  --p-steps 50 \
-#  --p-min-depth 1000 \
-#  --p-max-depth 50000 \
-#  --m-metadata-file $METAPATH \
-#  --o-visualization alpha-rarefaction.qzv
+crun qiime diversity alpha-rarefaction \
+  --i-table table.qza \
+  --i-phylogeny rooted-tree.qza \
+  --p-steps 50 \
+  --p-min-depth 1000 \
+  --p-max-depth 50000 \
+  --m-metadata-file $METAPATH \
+  --o-visualization alpha-rarefaction.qzv
 

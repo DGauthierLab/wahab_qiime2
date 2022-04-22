@@ -11,13 +11,7 @@
 enable_lmod
 module load container_env qiime2
 
-
-mkdir -p logs
 mkdir -p demux
-
-##SET metadata path
-
-METAPATH=/cm/shared/courses/gauthier/Microbiome/metadata/metadata_19_21b.txt
 
 ##SET fastq folder path
 
@@ -58,5 +52,5 @@ crun qiime demux summarize \
 
 
 
-#-------->proceed to preprocessing_qiime2.sbatch
+#-------->3_proceed to preprocessing_qiime2.sbatch
 
