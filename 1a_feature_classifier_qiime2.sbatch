@@ -8,6 +8,7 @@
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
+# test
 enable_lmod
 module load container_env qiime2
 
