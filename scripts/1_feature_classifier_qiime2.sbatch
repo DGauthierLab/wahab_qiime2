@@ -4,7 +4,7 @@
 #see: https://docs.qiime2.org/2021.4/tutorials/feature-classifier/ for details
  
 #SBATCH --job-name=qiime2_classifier
-#SBATCH -o logs/qiime2-%j.out
+#SBATCH -o qiime2-%j.out
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
@@ -13,6 +13,7 @@ enable_lmod
 module load container_env qiime2
 
 mkdir training_feature_classifiers
+cd training_feature_classifiers
 
 crun qiime rescript get-silva-data \
 --p-version '138.1' \

@@ -4,7 +4,7 @@
 #requires demux paired end files in folder called demux under top analysis directory
 
 #SBATCH --job-name=qiime2_dada2_preprocessing
-#SBATCH -o logs/qiime2-%j.out
+#SBATCH -o qiime2-%j.out
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
@@ -64,7 +64,7 @@ crun qiime phylogeny align-to-tree-mafft-fasttree \
 ##Taxonomic analysis (generate taxonomy.qza file)
 
 crun qiime feature-classifier classify-sklearn \
-  --i-classifier /cm/shared/courses/gauthier/Microbiome/training_feature_classifiers/slv_ssu_138.1_classifier.qza \
+  --i-classifier training_feature_classifiers/slv_ssu_138.1_classifier.qza \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
 
@@ -81,6 +81,6 @@ crun qiime diversity alpha-rarefaction \
   --p-steps 50 \
   --p-min-depth 1000 \
   --p-max-depth 50000 \
-  --m-metadata-file $METAPATH \
+  --m-metadata-file ${METAPATH} \
   --o-visualization alpha-rarefaction.qzv
 

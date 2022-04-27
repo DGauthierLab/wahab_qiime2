@@ -4,7 +4,7 @@
 #saves demux and joined files to folder called demux in top analysis directory.
 
 #SBATCH --job-name=qiime2_import
-#SBATCH -o logs/qiime2-%j.out
+#SBATCH -o qiime2-%j.out
 #SBATCH --time=00:00:00
 #SBATCH --cpus-per-task=32
 
@@ -15,9 +15,7 @@ mkdir -p demux
 
 ##SET fastq folder path
 
-FASTQ=/cm/shared/courses/gauthier/Microbiome/MM_microbiome/fastq
-
-
+FASTQ=fastq/
 
 #.gz OK
 
@@ -25,7 +23,7 @@ FASTQ=/cm/shared/courses/gauthier/Microbiome/MM_microbiome/fastq
 
 crun qiime tools import \
   --type 'SampleData[PairedEndSequencesWithQuality]' \
-  --input-path FASTQ \
+  --input-path ${FASTQ} \
   --input-format CasavaOneEightSingleLanePerSampleDirFmt \
   --output-path demux/demux-paired-end.qza
 

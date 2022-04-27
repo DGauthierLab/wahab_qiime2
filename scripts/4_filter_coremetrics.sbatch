@@ -13,7 +13,7 @@ enable_lmod
 module load container_env qiime2
 
 ##SET metadata path
-METAPATH=/cm/shared/courses/gauthier/Microbiome/metadata/metadata_19_21b.txt
+METAPATH=metadata/metadata_19_21b.txt
 
 
 ##SET taxonomy filter (also provide appropriate --p-include or --p-exclude statement below)
