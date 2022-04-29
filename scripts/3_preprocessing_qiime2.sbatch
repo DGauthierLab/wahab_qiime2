@@ -13,12 +13,12 @@ module load container_env qiime2
 
 ##SET metadata path
 
-METAPATH=metadata/metadata_19_21b.txt
+METAPATH=../metadata/SC_metadata_v1.txt
 
 ##SET truncation of F and R reads
 
-FTRUNC=275
-RTRUNC=275
+FTRUNC=250
+RTRUNC=250
 
 ##SET left trims of F and R reads
 
@@ -64,7 +64,7 @@ crun qiime phylogeny align-to-tree-mafft-fasttree \
 ##Taxonomic analysis (generate taxonomy.qza file)
 
 crun qiime feature-classifier classify-sklearn \
-  --i-classifier training_feature_classifiers/slv_ssu_138.1_classifier.qza \
+  --i-classifier ../training_feature_classifiers/slv_ssu_138.1_classifier.qza \
   --i-reads rep-seqs.qza \
   --o-classification taxonomy.qza
 
