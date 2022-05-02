@@ -16,6 +16,7 @@ mkdir -p demux
 ##SET fastq folder path
 
 FASTQ=fastq/
+rm fastq/README.txt
 
 #.gz OK
 

@@ -13,12 +13,12 @@ module load container_env qiime2
 
 ##SET metadata path
 
-METAPATH=../metadata/SC_metadata_v1.txt
+METAPATH=../metadata/metadata_19_21b.txt
 
 ##SET truncation of F and R reads
 
-FTRUNC=250
-RTRUNC=250
+FTRUNC=230
+RTRUNC=230
 
 ##SET left trims of F and R reads
 
